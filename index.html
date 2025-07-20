@@ -177,32 +177,17 @@
             color: #333;
         }
 
-        /* Mobile Navigation Specifics */
+        /* Mobile Navigation Specifics (Removed hamburger, now just flex on larger screens) */
         @media (max-width: 767px) {
             .main-nav-links {
-                display: none; /* Hide desktop nav by default on small screens */
-                flex-direction: column;
-                width: 100%;
-                background-color: #333; /* Dark background for mobile menu */
-                position: absolute;
-                top: 64px; /* Below header */
-                left: 0;
-                padding: 1rem 0;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-            .main-nav-links.active {
-                display: flex; /* Show when active */
-            }
-            .main-nav-links li {
-                text-align: center;
-                margin: 0.5rem 0;
-            }
-            .main-nav-links a {
-                display: block;
-                padding: 0.75rem 0;
+                display: none; /* Hide navigation completely on small screens */
             }
             .hamburger-button {
-                display: block; /* Show hamburger icon on small screens */
+                display: none; /* Ensure hamburger is hidden */
+            }
+            /* Adjust header to center logo if no nav links */
+            .header-nav-container {
+                justify-content: center;
             }
         }
         @media (min-width: 768px) {
@@ -214,11 +199,14 @@
             }
         }
 
-        /* Fix for mobile button tap delay and ensure pointer */
-        .generate-details-btn {
-            touch-action: manipulation; /* Remove 300ms delay on tap */
-            cursor: pointer; /* Ensure cursor is pointer */
-            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
+        /* New: Background animation for a section */
+        @keyframes pulseBackground {
+            0% { background-color: #e0f2f7; }
+            50% { background-color: #d1e7ed; }
+            100% { background-color: #e0f2f7; }
+        }
+        .animated-background {
+            animation: pulseBackground 8s infinite ease-in-out;
         }
     </style>
 </head>
@@ -226,21 +214,19 @@
 
     <!-- Header/Navigation -->
     <header class="bg-gray-800 text-white p-4 shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto flex justify-between items-center">
+        <nav class="container mx-auto flex justify-between items-center header-nav-container">
             <!-- Text Logo -->
             <a href="#" class="text-2xl font-bold text-yellow-400 rounded-lg p-2 hover:bg-gray-700 transition duration-300">
                 Vidhalaya
             </a>
-            <!-- Hamburger Button for Mobile -->
-            <button class="hamburger-button text-white text-2xl focus:outline-none" id="hamburger-menu" aria-label="Toggle navigation menu">
-                <i class="fas fa-bars"></i>
-            </button>
+            <!-- Navigation links (hidden on mobile via CSS) -->
             <ul class="main-nav-links flex space-x-6" id="main-nav-links">
                 <li><a href="#home" class="hover:text-yellow-400 transition duration-300 ease-in-out">Home</a></li>
                 <li><a href="#about" class="hover:text-yellow-400 transition duration-300 ease-in-out">About Us</a></li>
                 <li><a href="#courses" class="hover:text-yellow-400 transition duration-300 ease-in-out">Courses</a></li>
                 <li><a href="#contact" class="hover:text-yellow-400 transition duration-300 ease-in-out">Contact</a></li>
                 <li><a href="#reviews" class="hover:text-yellow-400 transition duration-300 ease-in-out">Reviews</a></li>
+                <li><a href="#inspiration" class="hover:text-yellow-400 transition duration-300 ease-in-out">Inspiration</a></li>
             </ul>
         </nav>
     </header>
@@ -289,16 +275,6 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Commercial Studies</h3>
                     <p class="text-blue-600 font-medium mb-4">Classes 9 & 10 (ICSE)</p>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Master business and commerce essentials, building a strong foundation for future studies.</p>
-                    <div class="flex flex-col space-y-2">
-                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Commercial Studies" data-class="Classes 9 & 10 (ICSE)" data-type="details">
-                            ✨ Generate More Details
-                        </button>
-                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Commercial Studies" data-class="Classes 9 & 10 (ICSE)" data-type="career">
-                            ✨ Explore Career Paths
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Course Card 2 -->
@@ -306,16 +282,6 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Economics Applications</h3>
                     <p class="text-green-600 font-medium mb-4">Classes 9 & 10 (ICSE)</p>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Explore economic principles practically, understanding their real-world implications.</p>
-                    <div class="flex flex-col space-y-2">
-                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Economics Applications" data-class="Classes 9 & 10 (ICSE)" data-type="details">
-                            ✨ Generate More Details
-                        </button>
-                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Economics Applications" data-class="Classes 9 & 10 (ICSE)" data-type="career">
-                            ✨ Explore Career Paths
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Course Card 3 -->
@@ -323,16 +289,6 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Accounts</h3>
                     <p class="text-purple-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Learn comprehensive financial accounting techniques, from basics to advanced concepts.</p>
-                    <div class="flex flex-col space-y-2">
-                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Accounts" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
-                            ✨ Generate More Details
-                        </button>
-                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Accounts" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
-                            ✨ Explore Career Paths
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Course Card 4 -->
@@ -340,16 +296,6 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Business Studies</h3>
                     <p class="text-red-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Understand core business management principles, organizational structures, and operations.</p>
-                    <div class="flex flex-col space-y-2">
-                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Business Studies" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
-                            ✨ Generate More Details
-                        </button>
-                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Business Studies" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
-                            ✨ Explore Career Paths
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Course Card 5 -->
@@ -357,16 +303,6 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Commerce</h3>
                     <p class="text-yellow-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Dive deep into trade, commerce, and industry, preparing for a dynamic business world.</p>
-                    <div class="flex flex-col space-y-2">
-                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Commerce" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
-                            ✨ Generate More Details
-                        </button>
-                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Commerce" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
-                            ✨ Explore Career Paths
-                        </button>
-                    </div>
                 </div>
 
                 <!-- Course Card 6 -->
@@ -374,19 +310,25 @@
                     <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Economics</h3>
                     <p class="text-pink-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
                     <p class="text-sm md:text-base text-gray-700 mb-4">Analyze economic systems, theories, and policies, fostering critical thinking skills.</p>
-                    <div class="flex flex-col space-y-2">
-                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Economics" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
-                            ✨ Generate More Details
-                        </button>
-                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
-                                data-course="Economics" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
-                            ✨ Explore Career Paths
-                        </button>
-                    </div>
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <!-- New Interactive Inspiration Section -->
+    <section id="inspiration" class="py-16 md:py-24 bg-blue-50 animated-background rounded-lg shadow-md mx-4 md:mx-auto my-8 max-w-6xl p-6 scroll-fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">Daily Dose of Inspiration</h2>
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto px-4 mb-8">
+                Get an inspiring quote or an interesting fact about the world of commerce and education!
+            </p>
+            <div id="inspiration-content" class="bg-white p-6 rounded-lg shadow-inner mb-6 min-h-[100px] flex items-center justify-center text-gray-800 italic text-lg md:text-xl">
+                Click the button below to get started!
+            </div>
+            <button id="generate-inspiration-btn" class="bg-indigo-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-700 transform hover:scale-105 transition duration-300 ease-in-out">
+                ✨ Get New Inspiration
+            </button>
         </div>
     </section>
 
@@ -492,7 +434,7 @@
         <i class="fas fa-arrow-up text-xl"></i>
     </button>
 
-    <!-- Modal for Course Details and Career Paths -->
+    <!-- Modal for displaying LLM content (repurposed) -->
     <div id="infoModal" class="modal-overlay">
         <div class="modal-content">
             <button class="modal-close-button" id="closeInfoModal">&times;</button>
@@ -502,7 +444,7 @@
                 <div class="flex justify-center items-center py-8">
                     <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                 </div>
-                <p class="text-center text-gray-500 mt-4">Generating information...</p>
+                <p class="text-center text-gray-500 mt-4">Generating inspiration...</p>
             </div>
         </div>
     </div>
@@ -511,24 +453,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Navigation Toggle
-            const hamburgerButton = document.getElementById('hamburger-menu');
-            const mainNavLinks = document.getElementById('main-nav-links');
-
-            hamburgerButton.addEventListener('click', () => {
-                mainNavLinks.classList.toggle('active');
-            });
-
-            // Close mobile nav when a link is clicked
-            mainNavLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mainNavLinks.classList.contains('active')) {
-                        mainNavLinks.classList.remove('active');
-                    }
-                });
-            });
-
-
             // Smooth scroll for internal links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
@@ -574,100 +498,91 @@
                 });
             });
 
-            // Modal Logic for Course Details and Career Paths
+            // Modal Logic for LLM content
             const infoModal = document.getElementById('infoModal');
             const closeInfoModalButton = document.getElementById('closeInfoModal');
             const modalInfoTitle = document.getElementById('modalInfoTitle');
             const modalInfoContent = document.getElementById('modalInfoContent');
-            const generateButtons = document.querySelectorAll('.generate-details-btn');
+            const generateInspirationButton = document.getElementById('generate-inspiration-btn'); // New button ID
 
             function openModal() {
                 infoModal.classList.add('show');
-                // Prevent body scrolling when modal is open
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflow = 'hidden'; // Prevent body scrolling
             }
 
             function closeModal() {
                 infoModal.classList.remove('show');
-                // Restore body scrolling when modal is closed
-                document.body.style.overflow = '';
-                // Clear content when closing
+                document.body.style.overflow = ''; // Restore body scrolling
                 modalInfoTitle.textContent = '';
                 modalInfoContent.innerHTML = `
                     <div class="flex justify-center items-center py-8">
                         <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
                     </div>
-                    <p class="text-center text-gray-500 mt-4">Generating information...</p>
+                    <p class="text-center text-gray-500 mt-4">Generating inspiration...</p>
                 `;
             }
 
             closeInfoModalButton.addEventListener('click', closeModal);
             infoModal.addEventListener('click', (e) => {
-                if (e.target === infoModal) { // Close only if clicking the overlay, not content
+                if (e.target === infoModal) {
                     closeModal();
                 }
             });
 
-            generateButtons.forEach(button => {
-                button.addEventListener('click', async () => {
-                    const courseName = button.dataset.course;
-                    const classLevel = button.dataset.class;
-                    const infoType = button.dataset.type; // 'details' or 'career'
+            // Event listener for Generate Inspiration button
+            generateInspirationButton.addEventListener('click', async () => {
+                console.log('Generate Inspiration button clicked.');
+                openModal();
 
-                    console.log('Button clicked:', courseName, infoType); // Debugging log
-                    openModal();
+                const type = Math.random() < 0.5 ? 'quote' : 'fact'; // Randomly choose between quote or fact
+                let prompt = "";
+                let titleText = "";
 
-                    let prompt = "";
-                    let titleText = "";
+                if (type === 'quote') {
+                    titleText = `Inspiring Quote`;
+                    prompt = `Generate a short, inspiring quote about education, learning, or ambition. Keep it concise, around 15-25 words.`;
+                } else { // type === 'fact'
+                    titleText = `Interesting Fact`;
+                    prompt = `Generate an interesting and concise fact related to commerce, economics, or business history. Keep it around 15-25 words.`;
+                }
 
-                    if (infoType === 'details') {
-                        titleText = `${courseName} - ${classLevel} Details`;
-                        prompt = `Generate a detailed, concise syllabus or key topics for a "${courseName}" course for "${classLevel}" students. Focus on the core concepts and skills they would acquire. Keep it to about 150-200 words. Format it as a coherent paragraph, not a list.`;
-                    } else if (infoType === 'career') {
-                        titleText = `Career Paths for ${courseName}`;
-                        prompt = `Suggest potential career paths and higher education options for a student who has completed a "${courseName}" course at the "${classLevel}" level. Provide a concise overview of each path. Keep it to about 150-200 words. Format it as a coherent paragraph, mentioning various roles.`;
+                modalInfoTitle.textContent = titleText;
+                modalInfoContent.innerHTML = `
+                    <div class="flex justify-center items-center py-8">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                    </div>
+                    <p class="text-center text-gray-500 mt-4">Generating ${type}...</p>
+                `;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        modalInfoContent.innerHTML = `<p class="text-center">${text}</p>`;
+                    } else {
+                        modalInfoContent.innerHTML = `<p class="text-red-500 text-center">Failed to generate inspiration. Please try again.</p>`;
+                        console.error("Gemini API response structure unexpected:", result);
                     }
-
-                    modalInfoTitle.textContent = titleText;
-
-                    // Show loading state
-                    modalInfoContent.innerHTML = `
-                        <div class="flex justify-center items-center py-8">
-                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
-                        </div>
-                        <p class="text-center text-gray-500 mt-4">Generating ${infoType} for ${courseName}...</p>
-                    `;
-
-                    try {
-                        let chatHistory = [];
-                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-                        const payload = { contents: chatHistory };
-                        const apiKey = ""; // Canvas will provide this at runtime
-                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        const result = await response.json();
-
-                        if (result.candidates && result.candidates.length > 0 &&
-                            result.candidates[0].content && result.candidates[0].content.parts &&
-                            result.candidates[0].content.parts.length > 0) {
-                            const text = result.candidates[0].content.parts[0].text;
-                            modalInfoContent.innerHTML = `<p>${text}</p>`;
-                        } else {
-                            modalInfoContent.innerHTML = `<p class="text-red-500">Failed to generate information. Please try again.</p>`;
-                            console.error("Gemini API response structure unexpected:", result);
-                        }
-                    } catch (error) {
-                        modalInfoContent.innerHTML = `<p class="text-red-500">An error occurred: ${error.message}. Please try again later.</p>`;
-                        console.error("Error calling Gemini API:", error);
-                    }
-                });
+                } catch (error) {
+                    modalInfoContent.innerHTML = `<p class="text-red-500 text-center">An error occurred: ${error.message}. Please try again later.</p>`;
+                    console.error("Error calling Gemini API:", error);
+                }
             });
         });
     </script>
