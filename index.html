@@ -176,6 +176,49 @@
         .modal-close-button:hover {
             color: #333;
         }
+
+        /* Mobile Navigation Specifics */
+        @media (max-width: 767px) {
+            .main-nav-links {
+                display: none; /* Hide desktop nav by default on small screens */
+                flex-direction: column;
+                width: 100%;
+                background-color: #333; /* Dark background for mobile menu */
+                position: absolute;
+                top: 64px; /* Below header */
+                left: 0;
+                padding: 1rem 0;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+            .main-nav-links.active {
+                display: flex; /* Show when active */
+            }
+            .main-nav-links li {
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+            .main-nav-links a {
+                display: block;
+                padding: 0.75rem 0;
+            }
+            .hamburger-button {
+                display: block; /* Show hamburger icon on small screens */
+            }
+        }
+        @media (min-width: 768px) {
+            .main-nav-links {
+                display: flex !important; /* Always show desktop nav on larger screens */
+            }
+            .hamburger-button {
+                display: none; /* Hide hamburger icon on larger screens */
+            }
+        }
+
+        /* Fix for mobile button tap delay and ensure pointer */
+        .generate-details-btn {
+            touch-action: manipulation; /* Remove 300ms delay on tap */
+            cursor: pointer; /* Ensure cursor is pointer */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -187,7 +230,11 @@
             <a href="#" class="text-2xl font-bold text-yellow-400 rounded-lg p-2 hover:bg-gray-700 transition duration-300">
                 Vidhalaya
             </a>
-            <ul class="flex space-x-6">
+            <!-- Hamburger Button for Mobile -->
+            <button class="hamburger-button text-white text-2xl focus:outline-none" id="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="main-nav-links flex space-x-6" id="main-nav-links">
                 <li><a href="#home" class="hover:text-yellow-400 transition duration-300 ease-in-out">Home</a></li>
                 <li><a href="#about" class="hover:text-yellow-400 transition duration-300 ease-in-out">About Us</a></li>
                 <li><a href="#courses" class="hover:text-yellow-400 transition duration-300 ease-in-out">Courses</a></li>
@@ -199,7 +246,6 @@
 
     <!-- Hero Section -->
     <section id="home" class="relative bg-gradient-to-r from-teal-500 to-blue-600 text-white py-20 md:py-32 flex items-center justify-center min-h-screen-75 overflow-hidden rounded-b-lg shadow-xl">
-        <!-- Removed background image div for smoother performance and cleaner look -->
         <div class="container mx-auto text-center relative z-10 p-4">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-down">
                 Partha Roy, Lead Educator
@@ -464,6 +510,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation Toggle
+            const hamburgerButton = document.getElementById('hamburger-menu');
+            const mainNavLinks = document.getElementById('main-nav-links');
+
+            hamburgerButton.addEventListener('click', () => {
+                mainNavLinks.classList.toggle('active');
+            });
+
+            // Close mobile nav when a link is clicked
+            mainNavLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mainNavLinks.classList.contains('active')) {
+                        mainNavLinks.classList.remove('active');
+                    }
+                });
+            });
+
+
             // Smooth scroll for internal links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
