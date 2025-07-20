@@ -1,814 +1,599 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="Vidhyalaya Commerce Institute offers specialized commerce education for ICSE, ISC, and CBSE students in classes 9-12. Join our expert-led classes today!">
-  <meta name="keywords" content="Commerce classes, ICSE commerce coaching, ISC CBSE commerce tuition, Vidhyalaya Commerce Institute">
-  <meta name="author" content="Vidhyalaya">
-  <title>Vidhyalaya - Empowering Future Commerce Leaders</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@900&display=swap" rel="stylesheet">
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4b9aH4Zo2g0g6vrm8EJhTyIQgWKLvFPxVcx3A3Ggtu0DVv1BJnkn+1DJG73P0G6E5H6g3QjA4X+kw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-VgPUJPi7lBRZDb8V6h1f3V2G5a7G8V+hh3J3Y8M0AIgTKJ+CUD2Dq2rs4GAQFLK0t2Mbt/+rNKcVVoZLf3VScDg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <style>
-    :root {
-      --primary-blue: #1e40af;
-      --accent-pink: #ec4899;
-      --gradient-start: #3b82f6;
-      --gradient-end: #f472b6;
-      --text-dark: #1f2937;
-      --bg-light: #f9fafb;
-      --whatsapp-green: #25D366;
-    }
-
-    * {
-      scroll-behavior: smooth;
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
-      min-height: 100vh;
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Playfair Display', serif;
-    }
-
-    nav {
-      background: rgba(30, 58, 138, 0.95);
-      backdrop-filter: blur(10px);
-      transition: background 0.3s ease;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 50;
-    }
-
-    nav.scrolled {
-      background: rgba(30, 58, 138, 1);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    #hero {
-      background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 90%);
-      position: relative;
-      overflow: hidden;
-      padding: 3rem 0;
-    }
-
-    #hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.15)" d="M0,160L60,144C120,128,240,96,360,112C480,128,600,192,720,208C840,224,960,192,1080,176C1200,160,1320,160,1380,160L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>') bottom;
-      background-size: cover;
-    }
-
-    .card, .contact-card {
-      background: white;
-      border-radius: 0.75rem;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover, .contact-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-      padding: 0.875rem 1.75rem;
-      border-radius: 0.5rem;
-      color: white;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      touch-action: manipulation;
-      z-index: 10;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.4s ease;
-    }
-
-    .btn-primary:hover::after, .btn-primary:active::after {
-      left: 100%;
-    }
-
-    .btn-primary:hover, .btn-primary:active {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-      background: linear-gradient(90deg, var(--gradient-end), var(--gradient-start));
-    }
-
-    .btn-primary .fa-arrow-right {
-      transition: transform 0.3s ease;
-    }
-
-    .btn-primary:hover .fa-arrow-right, .btn-primary:active .fa-arrow-right {
-      transform: translateX(4px);
-    }
-
-    .whatsapp-btn {
-      background: var(--whatsapp-green);
-      padding: 0.875rem;
-      border-radius: 50%;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-      z-index: 1000;
-      touch-action: manipulation;
-    }
-
-    .whatsapp-btn:hover {
-      transform: scale(1.1);
-    }
-
-    footer {
-      background: linear-gradient(135deg, #0f172a, var(--primary-blue));
-      position: relative;
-      padding: 2rem 0;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L60,112C120,128,240,160,360,160C480,160,600,128,720,112C840,96,960,96,1080,112C1200,128,1320,160,1380,176L1440,192L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>') top;
-      background-size: cover;
-    }
-
-    .nav-menu {
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .hamburger {
-      transition: transform 0.3s ease;
-      z-index: 1001;
-      padding: 0.75rem;
-      border-radius: 0.25rem;
-      background: rgba(255, 255, 255, 0.1);
-    }
-
-    .hamburger.open {
-      transform: rotate(180deg);
-    }
-
-    .hamburger .fa-bars, .hamburger .fa-times {
-      transition: opacity 0.3s ease;
-    }
-
-    .hamburger.open .fa-bars {
-      opacity: 0;
-      position: absolute;
-    }
-
-    .hamburger.open .fa-times {
-      opacity: 1;
-    }
-
-    .hamburger:not(.open) .fa-times {
-      opacity: 0;
-      position: absolute;
-    }
-
-    .hamburger:not(.open) .fa-bars {
-      opacity: 1;
-    }
-
-    .teacher-signature {
-      color: white;
-      font-family: 'Montserrat', sans-serif, 'Playfair Display', serif;
-      font-size: 1.1rem;
-      font-weight: 900;
-      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-      z-index: 10;
-      position: relative;
-      display: inline-block;
-      cursor: default;
-    }
-
-    .teacher-signature::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
-
-    .teacher-signature:hover::after, .teacher-signature:active::after {
-      transform: scaleX(1);
-    }
-
-    .contact-icon {
-      transition: transform 0.3s ease;
-    }
-
-    .contact-card:hover .contact-icon {
-      transform: scale(1.15);
-    }
-
-    .nav-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(4px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease;
-      z-index: 999;
-    }
-
-    .nav-overlay.active {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    /* Mobile-first approach */
-    @media (max-width: 768px) {
-      nav {
-        padding: 0.5rem 1rem;
-      }
-
-      .nav-menu {
-        transform: translateX(100%);
-        opacity: 0;
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100vh;
-        width: 100%;
-        background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-        backdrop-filter: blur(8px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1.5rem;
-        padding: 2rem;
-        z-index: 1000;
-        border-radius: 0 0 0 1rem;
-        box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-      }
-
-      .nav-menu.open {
-        transform: translateX(0);
-        opacity: 1;
-      }
-
-      .nav-menu a {
-        font-size: 1.25rem;
-        padding: 1rem;
-        width: 100%;
-        text-align: center;
-        color: white;
-        display: block;
-        border-radius: 0.5rem;
-        transition: transform 0.2s ease, background 0.2s ease;
-        position: relative;
-      }
-
-      .nav-menu a:hover, .nav-menu a:active {
-        transform: scale(1.05);
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .nav-menu a::after {
-        content: '';
-        position: absolute;
-        bottom: 0.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 0;
-        height: 2px;
-        background: var(--accent-pink);
-        transition: width 0.2s ease;
-      }
-
-      .nav-menu a:hover::after, .nav-menu a:active::after {
-        width: 50%;
-      }
-
-      .hamburger {
-        display: block;
-        font-size: 1.5rem;
-      }
-
-      #hero {
-        padding: 3rem 1rem;
-        clip-path: polygon(0 0, 100% 0, 100% 90%, 0 95%);
-      }
-
-      #hero h1 {
-        font-size: 2rem;
-      }
-
-      #hero p {
-        font-size: 0.9rem;
-      }
-
-      #hero .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-      }
-
-      .teacher-signature {
-        font-size: 1rem;
-        position: static;
-        margin-bottom: 0.5rem;
-      }
-
-      .btn-primary {
-        padding: 0.75rem 1.5rem;
-        font-size: 0.95rem;
-      }
-
-      .whatsapp-btn {
-        bottom: 1rem;
-        right: 1rem;
-        padding: 0.75rem;
-        font-size: 1.5rem;
-      }
-
-      .card, .contact-card {
-        padding: 1rem;
-        margin: 0.5rem;
-      }
-
-      #contact .grid {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-      }
-
-      .contact-icon {
-        font-size: 1.5rem;
-      }
-
-      .contact-card p {
-        font-size: 0.9rem;
-      }
-
-      .hero-particle {
-        display: none;
-      }
-    }
-
-    @media (min-width: 769px) {
-      .hamburger, .nav-overlay {
-        display: none;
-      }
-
-      .nav-menu {
-        display: flex;
-        gap: 1.5rem;
-      }
-
-      #hero h1 {
-        font-size: 3.5rem;
-      }
-
-      #hero p {
-        font-size: 1.1rem;
-      }
-
-      #hero .container {
-        display: block;
-      }
-
-      .teacher-signature {
-        position: absolute;
-        bottom: 1rem;
-        right: 1rem;
-      }
-
-      .btn-primary {
-        padding: 1rem 2rem;
-        font-size: 1rem;
-      }
-
-      .card, .contact-card {
-        padding: 1.5rem;
-      }
-    }
-
-    /* Accessibility */
-    a:focus, button:focus {
-      outline: 2px solid var(--accent-pink);
-      outline-offset: 2px;
-    }
-
-    /* Remove heavy animations for mobile */
-    @media (max-width: 768px) {
-      .animate-hero-title, .animate-hero-subtitle, .animate-hero-text, .animate-hero-cta, .animate-card {
-        animation: none !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidhalaya - Ambition Meets Excellence | Commerce Coaching for ICSE, ISC & CBSE</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Vidhalaya is the premier coaching institute in Kolkata specializing in Accountancy, Business Studies, Economics, and Commerce for Class IX-XII (ICSE/ISC & CBSE). Your future in commerce starts here.">
+    <meta name="keywords" content="Vidhalaya, commerce coaching, Accountancy, Business Studies, Economics, Commerce, ICSE, ISC, CBSE, Class 9, Class 10, Class 11, Class 12, Kolkata coaching, best commerce classes, Partha Roy">
+    <meta name="author" content="Sanchalit">
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/"> <!-- Replace with your actual website URL -->
+    <meta property="og:title" content="Vidhalaya - Ambition Meets Excellence | Commerce Coaching">
+    <meta property="og:description" content="Vidhalaya is the premier coaching institute in Kolkata specializing in Accountancy, Business Studies, Economics, and Commerce for Class IX-XII (ICSE/ISC & CBSE).">
+    <meta property="og:image" content="https://placehold.co/1200x630/4CAF50/FFFFFF?text=Vidhalaya+Banner"> <!-- Placeholder, consider replacing with a real banner image -->
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/"> <!-- Replace with your actual website URL -->
+    <meta property="twitter:title" content="Vidhalaya - Ambition Meets Excellence | Commerce Coaching">
+    <meta property="twitter:description" content="Vidhalaya is the premier coaching institute in Kolkata specializing in Accountancy, Business Studies, Economics, and Commerce for Class IX-XII (ICSE/ISC & CBSE).">
+    <meta property="twitter:image" content="https://placehold.co/1200x675/4CAF50/FFFFFF?text=Vidhalaya+Twitter"> <!-- Placeholder, consider replacing with a real banner image -->
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/4CAF50/FFFFFF?text=V" type="image/x-icon"> <!-- Placeholder, replace with your actual favicon -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Poppins (for headings) and Inter (for body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons (Stars, WhatsApp, Email, Location, Arrow Up) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa; /* Light background */
+            color: #333;
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif; /* Apply Poppins to headings */
+        }
+        .star-rating .fas {
+            color: #ffc107; /* Gold color for stars */
+        }
+        .star-rating .far {
+            color: #e4e5e9; /* Light grey for empty stars */
+        }
+
+        /* Custom Animations for Hero Section */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.3s; /* Delay for the paragraph after the heading */
+        }
+        .hero-button-animation {
+            animation-delay: 0.6s; /* Delay for the first button */
+        }
+        .hero-button-animation-2 {
+            animation-delay: 0.9s; /* Delay for the second button */
+        }
+        /* Removed .logo-tree-icon as it's no longer used */
+
+        /* Scroll Reveal Animations */
+        .scroll-fade-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #4CAF50;
+            color: white;
+            padding: 1rem;
+            border-radius: 9999px; /* Fully rounded */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden by default */
+            cursor: pointer;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+        #back-to-top:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-20px);
+            opacity: 0;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+        .modal-overlay.show .modal-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .modal-close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.2s ease-in-out;
+        }
+        .modal-close-button:hover {
+            color: #333;
+        }
+    </style>
 </head>
-<body>
-  <!-- Navigation -->
-  <nav class="text-white p-2 sticky top-0 z-50" id="navbar" role="navigation" aria-label="Main navigation">
-    <div class="container mx-auto flex justify-between items-center px-3">
-      <a href="#hero" class="flex items-center gap-2">
-        <span class="inline-block w-7 h-7 bg-gradient-to-r from-blue-600 to-pink-500 rounded-full"></span>
-        <span class="text-lg md:text-xl font-bold tracking-tight">Vidhyalaya</span>
-      </a>
-      <button class="hamburger text-2xl focus:outline-none md:hidden" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
-        <i class="fas fa-bars"></i>
-        <i class="fas fa-times"></i>
-      </button>
-      <div class="nav-menu flex flex-col md:flex-row items-center gap-3 md:gap-5 md:flex md:static" id="nav-menu" role="menu">
-        <a href="#hero" class="hover:text-pink-300 transition-colors text-sm md:text-base" role="menuitem">Home</a>
-        <a href="#about" class="hover:text-pink-300 transition-colors text-sm md:text-base" role="menuitem">About</a>
-        <a href="#courses" class="hover:text-pink-300 transition-colors text-sm md:text-base" role="menuitem">Courses</a>
-        <a href="#testimonials" class="hover:text-pink-300 transition-colors text-sm md:text-base" role="menuitem">Testimonials</a>
-        <a href="#contact" class="hover:text-pink-300 transition-colors text-sm md:text-base" role="menuitem">Contact</a>
-        <a href="https://forms.gle/6xPsi2KLkhs2DVdTA" target="_blank" class="btn-primary text-sm md:text-base" role="menuitem">Admission Now</a>
-      </div>
-    </div>
-    <div class="nav-overlay"></div>
-  </nav>
+<body class="antialiased">
 
-  <!-- Hero Section -->
-  <section id="hero" class="py-10 md:py-16 text-center text-white relative" role="banner">
-    <div class="container mx-auto px-3 relative z-10">
-      <h1 class="text-2rem md:text-4xl font-bold mb-3">Vidhyalaya</h1>
-      <p class="text-sm md:text-lg mb-4 max-w-sm mx-auto">Empowering Future Commerce Leaders</p>
-      <p class="text-xs md:text-base mb-6 max-w-xs md:max-w-md mx-auto">Specialized commerce education for ICSE, ISC, and CBSE students in classes 9-12.</p>
-      <div class="teacher-signature font-extrabold" data-animate-signature>Partha Roy, Lead Educator</div>
-      <a href="https://forms.gle/6xPsi2KLkhs2DVdTA" target="_blank" class="btn-primary text-sm md:text-base" aria-label="Join Vidhyalaya classes">
-        <span>Join Us Today</span>
-        <i class="fas fa-arrow-right ml-2"></i>
-      </a>
-    </div>
-    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-      <i class="fas fa-chevron-down text-base md:text-xl"></i>
-    </div>
-    <div class="hero-particle w-3 h-3 top-12 left-6"></div>
-    <div class="hero-particle w-4 h-4 top-32 right-10"></div>
-    <div class="hero-particle w-3 h-3 bottom-12 left-20"></div>
-    <div class="hero-particle w-2 h-2 bottom-10 right-20"></div>
-  </section>
+    <!-- Header/Navigation -->
+    <header class="bg-gray-800 text-white p-4 shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center">
+            <!-- Text Logo (Tree logo removed) -->
+            <a href="#" class="text-2xl font-bold text-yellow-400 rounded-lg p-2 hover:bg-gray-700 transition duration-300">
+                Vidhalaya
+            </a>
+            <ul class="flex space-x-6">
+                <li><a href="#home" class="hover:text-yellow-400 transition duration-300 ease-in-out">Home</a></li>
+                <li><a href="#about" class="hover:text-yellow-400 transition duration-300 ease-in-out">About Us</a></li>
+                <li><a href="#courses" class="hover:text-yellow-400 transition duration-300 ease-in-out">Courses</a></li>
+                <li><a href="#contact" class="hover:text-yellow-400 transition duration-300 ease-in-out">Contact</a></li>
+                <li><a href="#reviews" class="hover:text-yellow-400 transition duration-300 ease-in-out">Reviews</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- About Section -->
-  <section id="about" class="py-10 md:py-16 bg-white" role="region" aria-labelledby="about-heading">
-    <div class="container mx-auto px-3">
-      <h2 id="about-heading" class="text-2rem md:text-3xl font-bold text-blue-900 mb-6 text-center">About Vidhyalaya</h2>
-      <div class="card p-4 md:p-6 max-w-xl mx-auto text-center">
-        <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-3">
-          Welcome to Vidhyalaya, where ambition meets excellence. We are the premier destination for commerce students determined to lead.
-        </p>
-        <p class="text-gray-600 text-sm md:text-base leading-relaxed mb-3">
-          Specializing in Accountancy, Business Studies, Economics, and Commerce, we guide students from Class IX to XII (ICSE/ISC & CBSE) through every challenge.
-        </p>
-        <p class="text-gray-600 text-sm md:text-base leading-relaxed font-semibold">
-          Your future in commerce starts here. Let's build it together.
-        </p>
-        <a href="#contact" class="btn-primary mt-4 text-sm md:text-base">Learn More</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Courses Section -->
-  <section id="courses" class="py-10 md:py-16 bg-gray-50" role="region" aria-labelledby="courses-heading">
-    <div class="container mx-auto px-3">
-      <h2 id="courses-heading" class="text-2rem md:text-3xl font-bold text-blue-900 mb-6 text-center">Courses Offered</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
-        <div class="card p-4 md:p-5 text-center" data-animate>
-          <h3 class="text-base md:text-lg font-semibold text-blue-800 mb-2">Commercial Studies</h3>
-          <p class="text-gray-600 font-medium text-sm md:text-base">Classes 9 & 10 (ICSE)</p>
-          <p class="text-gray-500 mt-2 text-xs md:text-sm">Master business and commerce essentials.</p>
-        </div>
-        <div class="card p-4 md:p-5 text-center" data-animate>
-          <h3 class="text-base md:text-lg font-semibold text-blue-800 mb-2">Economics Applications</h3>
-          <p class="text-gray-600 font-medium text-sm md:text-base">Classes 9 & 10 (ICSE)</p>
-          <p class="text-gray-500 mt-2 text-xs md:text-sm">Explore economic principles practically.</p>
-        </div>
-        <div class="card p-4 md:p-5 text-center" data-animate>
-          <h3 class="text-base md:text-lg font-semibold text-blue-800 mb-2">Accounts</h3>
-          <p class="text-gray-600 font-medium text-sm md:text-base">Classes 11 & 12 (ISC & CBSE)</p>
-          <p class="text-gray-500 mt-2 text-xs md:text-sm">Learn financial accounting techniques.</p>
-        </div>
-        <div class="card p-4 md:p-5 text-center" data-animate>
-          <h3 class="text-base md:text-lg font-semibold text-blue-800 mb-2">Business Studies</h3>
-          <p class="text-gray-600 font-medium text-sm md:text-base">Classes 11 & 12 (ISC & CBSE)</p>
-          <p class="text-gray-500 mt-2 text-xs md:text-sm">Understand business management.</p>
-        </div>
-        <div class="card p-4 md:p-5 text-center" data-animate>
-          <h3 class="text-base md:text-lg font-semibold text-blue-800 mb-2">Commerce</h3>
-          <p class="text-gray-600 font-medium text-sm md:text-base">Classes 11 & 12 (ISC & CBSE)</p>
-          <p class="text-gray-500 mt-2 text-xs md:text-sm">Dive into trade and commerce.</p>
-        </div>
-        <div class="card p-4 md:p-5 text-center" data-animate>
-          <h3 class="text-base md:text-lg font-semibold text-blue-800 mb-2">Economics</h3>
-          <p class="text-gray-600 font-medium text-sm md:text-base">Classes 11 & 12 (ISC & CBSE)</p>
-          <p class="text-gray-500 mt-2 text-xs md:text-sm">Analyze economic systems.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section id="testimonials" class="py-10 md:py-16 bg-gray-50" role="region" aria-labelledby="testimonials-heading">
-    <div class="container mx-auto px-3">
-      <h2 id="testimonials-heading" class="text-2rem md:text-3xl font-bold text-blue-900 mb-6 text-center">Success Stories</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
-        <div class="card p-4 md:p-5" data-animate>
-          <div class="flex justify-center mb-2">
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-          </div>
-          <p class="text-gray-600 italic text-sm md:text-base mb-3">"Vidhyalaya helped me ace my ICSE Commercial Studies exam!"</p>
-          <p class="text-blue-800 font-semibold text-xs md:text-sm">- Priya S., Class 10</p>
-        </div>
-        <div class="card p-4 md:p-5" data-animate>
-          <div class="flex justify-center mb-2">
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-          </div>
-          <p class="text-gray-600 italic text-sm md:text-base mb-3">"The faculty's guidance in Accounts was exceptional!"</p>
-          <p class="text-blue-800 font-semibold text-xs md:text-sm">- Rohan K., Class 12</p>
-        </div>
-        <div class="card p-4 md:p-5" data-animate>
-          <div class="flex justify-center mb-2">
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-            <i class="fas fa-star text-yellow-400 text-sm md:text-base"></i>
-          </div>
-          <p class="text-gray-600 italic text-sm md:text-base mb-3">"I gained confidence in Economics thanks to Vidhyalaya."</p>
-          <p class="text-blue-800 font-semibold text-xs md:text-sm">- Anjali M., Class 11</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="py-10 md:py-16 bg-white" role="region" aria-labelledby="contact-heading">
-    <div class="container mx-auto px-3">
-      <h2 id="contact-heading" class="text-2rem md:text-3xl font-bold text-blue-900 mb-6 text-center">Get in Touch</h2>
-      <div class="max-w-2xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="contact-card p-4 md:p-5 text-center" data-animate>
-            <i class="fab fa-whatsapp text-[var(--whatsapp-green)] text-xl md:text-2xl mb-2 contact-icon"></i>
-            <p class="text-gray-600 text-sm md:text-base">
-              <a href="https://wa.me/918583980999" target="_blank" class="hover:text-[var(--whatsapp-green)] transition-colors inline-flex items-center">
-                <i class="fab fa-whatsapp mr-1 text-[var(--whatsapp-green)]"></i> +91 8583980999
-              </a>
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-20 md:py-32 flex items-center justify-center min-h-screen-75 overflow-hidden rounded-b-lg shadow-xl">
+        <!-- Background image of a classroom/institute -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://placehold.co/1920x1080/000000/FFFFFF?text=Classroom+Institute');" role="img" aria-label="Modern classroom interior with desks and chairs"></div>
+        <div class="container mx-auto text-center relative z-10 p-4">
+            <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 animate-fade-in-down">
+                Partha Roy, Lead Educator
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in-up">
+                Guiding the next generation of commerce leaders.
             </p>
-          </div>
-          <div class="contact-card p-4 md:p-5 text-center" data-animate>
-            <i class="fas fa-envelope text-blue-600 text-xl md:text-2xl mb-2 contact-icon"></i>
-            <p class="text-gray-600 text-sm md:text-base">
-              <a href="mailto:vidhyalaya.bkp@gmail.com" class="hover:text-blue-600 transition-colors">vidhyalaya.bkp@gmail.com</a>
+            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#courses" class="inline-block bg-yellow-400 text-gray-900 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-yellow-300 transform hover:scale-105 transition duration-300 ease-in-out hero-button-animation">
+                    Explore Our Courses
+                </a>
+                <a href="https://forms.gle/6xPsi2KLkhs2DVdTA" target="_blank" class="inline-block bg-green-500 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-green-400 transform hover:scale-105 transition duration-300 ease-in-out hero-button-animation-2">
+                    Apply for Admission
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-white rounded-lg shadow-md mx-4 md:mx-auto my-8 max-w-6xl p-6 scroll-fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-8">About Vidhalaya</h2>
+            <p class="text-base md:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto px-4">
+                Welcome to <span class="font-semibold text-blue-600">Vidhalaya</span>, where ambition meets excellence.
+                We are the premier destination for commerce students determined to lead.
+                Specializing in Accountancy, Business Studies, Economics, and Commerce, we guide students from Class IX to XII (ICSE/ISC & CBSE) through every challenge.
+                Your future in commerce starts here. Let's build it together.
             </p>
-          </div>
-          <div class="contact-card p-4 md:p-5 text-center" data-animate>
-            <i class="fas fa-map-marker-alt text-red-600 text-xl md:text-2xl mb-2 contact-icon"></i>
-            <p class="text-gray-600 text-sm md:text-base">
-              <a href="https://maps.app.goo.gl/DbmjTMhgoAsUUwTo6?g_st=aw" target="_blank" class="hover:text-blue-600 transition-colors">View Location on Map</a>
-            </p>
-          </div>
         </div>
-        <div class="text-center py-6">
-          <a href="https://wa.me/918583980999" target="_blank" class="btn-primary text-sm md:text-base">
-            <i class="fab fa-whatsapp mr-2 text-base md:text-lg"></i>Chat on WhatsApp
-          </a>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="py-16 md:py-24 bg-gray-50 rounded-lg shadow-md mx-4 md:mx-auto my-8 max-w-6xl p-6 scroll-fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Our Specialized Courses</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+
+                <!-- Course Card 1 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out p-6 border-t-4 border-blue-500 transform hover:scale-103">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Commercial Studies</h3>
+                    <p class="text-blue-600 font-medium mb-4">Classes 9 & 10 (ICSE)</p>
+                    <p class="text-sm md:text-base text-gray-700 mb-4">Master business and commerce essentials, building a strong foundation for future studies.</p>
+                    <div class="flex flex-col space-y-2">
+                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm">
+                            ✨ Generate More Details
+                        </button>
+                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Commercial Studies" data-class="Classes 9 & 10 (ICSE)" data-type="career">
+                            ✨ Explore Career Paths
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Card 2 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out p-6 border-t-4 border-green-500 transform hover:scale-103">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Economics Applications</h3>
+                    <p class="text-green-600 font-medium mb-4">Classes 9 & 10 (ICSE)</p>
+                    <p class="text-sm md:text-base text-gray-700 mb-4">Explore economic principles practically, understanding their real-world implications.</p>
+                    <div class="flex flex-col space-y-2">
+                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Economics Applications" data-class="Classes 9 & 10 (ICSE)" data-type="details">
+                            ✨ Generate More Details
+                        </button>
+                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Economics Applications" data-class="Classes 9 & 10 (ICSE)" data-type="career">
+                            ✨ Explore Career Paths
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Card 3 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out p-6 border-t-4 border-purple-500 transform hover:scale-103">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Accounts</h3>
+                    <p class="text-purple-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
+                    <p class="text-sm md:text-base text-gray-700 mb-4">Learn comprehensive financial accounting techniques, from basics to advanced concepts.</p>
+                    <div class="flex flex-col space-y-2">
+                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Accounts" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
+                            ✨ Generate More Details
+                        </button>
+                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Accounts" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
+                            ✨ Explore Career Paths
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Card 4 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out p-6 border-t-4 border-red-500 transform hover:scale-103">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Business Studies</h3>
+                    <p class="text-red-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
+                    <p class="text-sm md:text-base text-gray-700 mb-4">Understand core business management principles, organizational structures, and operations.</p>
+                    <div class="flex flex-col space-y-2">
+                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Business Studies" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
+                            ✨ Generate More Details
+                        </button>
+                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Business Studies" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
+                            ✨ Explore Career Paths
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Card 5 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out p-6 border-t-4 border-yellow-500 transform hover:scale-103">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Commerce</h3>
+                    <p class="text-yellow-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
+                    <p class="text-sm md:text-base text-gray-700 mb-4">Dive deep into trade, commerce, and industry, preparing for a dynamic business world.</p>
+                    <div class="flex flex-col space-y-2">
+                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Commerce" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
+                            ✨ Generate More Details
+                        </button>
+                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Commerce" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
+                            ✨ Explore Career Paths
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Card 6 -->
+                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out p-6 border-t-4 border-pink-500 transform hover:scale-103">
+                    <h3 class="text-xl md:text-2xl font-semibold text-gray-900 mb-3">Economics</h3>
+                    <p class="text-pink-600 font-medium mb-4">Classes 11 & 12 (ISC & CBSE)</p>
+                    <p class="text-sm md:text-base text-gray-700 mb-4">Analyze economic systems, theories, and policies, fostering critical thinking skills.</p>
+                    <div class="flex flex-col space-y-2">
+                        <button class="generate-details-btn bg-blue-500 text-white py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Economics" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="details">
+                            ✨ Generate More Details
+                        </button>
+                        <button class="generate-details-btn bg-purple-500 text-white py-2 px-4 rounded-full hover:bg-purple-600 transition duration-300 ease-in-out text-sm"
+                                data-course="Economics" data-class="Classes 11 & 12 (ISC & CBSE)" data-type="career">
+                            ✨ Explore Career Paths
+                        </button>
+                    </div>
+                </div>
+
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-white rounded-lg shadow-md mx-4 md:mx-auto my-8 max-w-6xl p-6 scroll-fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Get in Touch</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center space-y-8 md:space-y-0 md:space-x-12 px-4">
+                <div class="flex items-center text-gray-700 text-base md:text-lg">
+                    <i class="fab fa-whatsapp text-green-500 text-2xl md:text-3xl mr-3"></i>
+                    <a href="https://wa.me/918583980999" target="_blank" class="hover:text-blue-600 transition duration-300 ease-in-out">
+                        WhatsApp: +91 8583980999
+                    </a>
+                </div>
+                <div class="flex items-center text-gray-700 text-base md:text-lg">
+                    <i class="fas fa-envelope text-red-500 text-2xl md:text-3xl mr-3"></i>
+                    <a href="mailto:vidhalaya.bkp@gmail.com" class="hover:text-blue-600 transition duration-300 ease-in-out">
+                        Email: vidhalaya.bkp@gmail.com
+                    </a>
+                </div>
+                <div class="flex items-center text-gray-700 text-base md:text-lg">
+                    <i class="fas fa-map-marker-alt text-blue-500 text-2xl md:text-3xl mr-3"></i>
+                    <a href="https://maps.app.goo.gl/VrFsKqJ45L4JW1bH8" target="_blank" class="hover:text-blue-600 transition duration-300 ease-in-out">
+                        Find Us on Map
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-16 md:py-24 bg-gray-50 rounded-lg shadow-md mx-4 md:mx-auto my-8 max-w-6xl p-6 scroll-fade-in">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Student Reviews</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                <!-- Example Review 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 italic mb-4">"Vidhalaya transformed my understanding of commerce. The educators are truly dedicated!"</p>
+                    <p class="font-semibold text-gray-800">- Ananya S.</p>
+                </div>
+
+                <!-- Example Review 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 italic mb-4">"Excellent coaching for economics. I highly recommend it for CBSE students."</p>
+                    <p class="font-semibold text-gray-800">- Rohan K.</p>
+                </div>
+
+                <!-- Example Review 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 italic mb-4">"The accounts classes are top-notch. Clear explanations and great support."</p>
+                    <p class="font-semibold text-gray-800">- Priya M.</p>
+                </div>
+
+                <!-- Example Review 4 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 italic mb-4">"A fantastic place to learn business studies. The practical approach helped a lot."</p>
+                    <p class="font-semibold text-gray-800">- Sameer D.</p>
+                </div>
+
+                <!-- Example Review 5 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 italic mb-4">"My grades improved significantly after joining Vidhalaya for Commerce."</p>
+                    <p class="font-semibold text-gray-800">- Kriti L.</p>
+                </div>
+
+                <!-- Example Review 6 -->
+                <div class="bg-white rounded-xl shadow-lg p-6">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-sm md:text-base text-gray-700 italic mb-4">"The best place for ICSE students. Comprehensive and easy to understand."</p>
+                    <p class="font-semibold text-gray-800">- Arjun V.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6 text-center rounded-t-lg shadow-inner mt-8">
+        <div class="container mx-auto">
+            <p>&copy; 2025 Vidhalaya. All rights reserved.</p>
+            <p class="mt-2 text-sm">Designed with <i class="fas fa-heart text-red-500"></i> by Sanchalit</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up text-xl"></i>
+    </button>
+
+    <!-- Modal for Course Details and Career Paths -->
+    <div id="infoModal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-close-button" id="closeInfoModal">&times;</button>
+            <h3 id="modalInfoTitle" class="text-2xl font-bold text-gray-800 mb-4"></h3>
+            <div id="modalInfoContent" class="text-gray-700 leading-relaxed">
+                <!-- LLM generated content will be loaded here -->
+                <div class="flex justify-center items-center py-8">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                </div>
+                <p class="text-center text-gray-500 mt-4">Generating information...</p>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="text-white py-8 relative" role="contentinfo">
-    <div class="container mx-auto px-3">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div>
-          <h3 class="text-base md:text-lg font-bold mb-2">Vidhyalaya</h3>
-          <p class="text-gray-300 text-xs md:text-sm">Empowering Future Commerce Leaders</p>
-          <p class="text-gray-400 text-xs md:text-sm mt-1"><a href="https://maps.app.goo.gl/DbmjTMhgoAsUUwTo6?g_st=aw" target="_blank" class="hover:text-blue-300">View Location on Map</a></p>
-        </div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="mt-4 text-center border-t border-gray-700 pt-3">
-        <p class="text-xs md:text-sm text-gray-400">© 2025 Vidhyalaya Commerce Institute. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scroll for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/918583980999" target="_blank" class="whatsapp-btn fixed bottom-3 right-3 text-white" aria-label="Chat on WhatsApp">
-    <i class="fab fa-whatsapp text-xl md:text-2xl"></i>
-  </a>
+            // Scroll Reveal Animation
+            const scrollElements = document.querySelectorAll('.scroll-fade-in');
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // GSAP and ScrollTrigger check
-      const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
-      if (!hasGSAP) {
-        console.warn('GSAP or ScrollTrigger not loaded. Animations will be disabled.');
-      } else {
-        gsap.registerPlugin(ScrollTrigger);
-      }
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // Optional: Unobserve after animation if it's a one-time animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.2 // Trigger when 20% of the element is visible
+            });
 
-      const navMenu = document.querySelector('.nav-menu');
-      const hamburger = document.querySelector('.hamburger');
-      const navOverlay = document.querySelector('.nav-overlay');
-      const teacherSignature = document.querySelector('.teacher-signature');
-      const isMobile = window.innerWidth <= 768;
+            scrollElements.forEach(el => observer.observe(el));
 
-      // Toggle mobile navigation
-      function toggleNavMenu() {
-        const isOpen = navMenu.classList.toggle('open');
-        navOverlay.classList.toggle('active');
-        hamburger.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        if (hasGSAP) {
-          gsap.to(navMenu, {
-            xPercent: isOpen ? 0 : 100,
-            opacity: isOpen ? 1 : 0,
-            duration: 0.4,
-            ease: 'power3.out'
-          });
-          gsap.to(navOverlay, {
-            opacity: isOpen ? 1 : 0,
-            duration: 0.4,
-            ease: 'power3.out'
-          });
-          if (isOpen) {
-            gsap.fromTo('.nav-menu a', 
-              { opacity: 0, y: 20 },
-              { opacity: 1, y: 0, stagger: 0.1, duration: 0.4, ease: 'power2.out' }
-            );
-          }
-        } else {
-          navMenu.style.transform = isOpen ? 'translateX(0)' : 'translateX(100%)';
-          navMenu.style.opacity = isOpen ? '1' : '0';
-          navOverlay.style.opacity = isOpen ? '1' : '0';
-          navOverlay.style.pointerEvents = isOpen ? 'auto' : 'none';
-        }
-      }
+            // Back to Top Button Logic
+            const backToTopButton = document.getElementById('back-to-top');
 
-      // Hamburger menu toggle
-      hamburger.addEventListener('click', toggleNavMenu);
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
 
-      // Smooth scrolling and close menu on link click
-      document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          const target = document.querySelector(targetId);
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-          if (isMobile && navMenu.classList.contains('open')) {
-            toggleNavMenu();
-          }
+            backToTopButton.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Modal Logic for Course Details and Career Paths
+            const infoModal = document.getElementById('infoModal');
+            const closeInfoModalButton = document.getElementById('closeInfoModal');
+            const modalInfoTitle = document.getElementById('modalInfoTitle');
+            const modalInfoContent = document.getElementById('modalInfoContent');
+            const generateButtons = document.querySelectorAll('.generate-details-btn');
+
+            function openModal() {
+                infoModal.classList.add('show');
+            }
+
+            function closeModal() {
+                infoModal.classList.remove('show');
+                // Clear content when closing
+                modalInfoTitle.textContent = '';
+                modalInfoContent.innerHTML = `
+                    <div class="flex justify-center items-center py-8">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                    </div>
+                    <p class="text-center text-gray-500 mt-4">Generating information...</p>
+                `;
+            }
+
+            closeInfoModalButton.addEventListener('click', closeModal);
+            infoModal.addEventListener('click', (e) => {
+                if (e.target === infoModal) {
+                    closeModal();
+                }
+            });
+
+            generateButtons.forEach(button => {
+                button.addEventListener('click', async () => {
+                    const courseName = button.dataset.course;
+                    const classLevel = button.dataset.class;
+                    const infoType = button.dataset.type; // 'details' or 'career'
+
+                    openModal();
+
+                    let prompt = "";
+                    let titleText = "";
+
+                    if (infoType === 'details') {
+                        titleText = `${courseName} - ${classLevel} Details`;
+                        prompt = `Generate a detailed, concise syllabus or key topics for a "${courseName}" course for "${classLevel}" students. Focus on the core concepts and skills they would acquire. Keep it to about 150-200 words. Format it as a coherent paragraph, not a list.`;
+                    } else if (infoType === 'career') {
+                        titleText = `Career Paths for ${courseName}`;
+                        prompt = `Suggest potential career paths and higher education options for a student who has completed a "${courseName}" course at the "${classLevel}" level. Provide a concise overview of each path. Keep it to about 150-200 words. Format it as a coherent paragraph, mentioning various roles.`;
+                    }
+
+                    modalInfoTitle.textContent = titleText;
+
+                    // Show loading state
+                    modalInfoContent.innerHTML = `
+                        <div class="flex justify-center items-center py-8">
+                            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+                        </div>
+                        <p class="text-center text-gray-500 mt-4">Generating ${infoType} for ${courseName}...</p>
+                    `;
+
+                    try {
+                        let chatHistory = [];
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                        const payload = { contents: chatHistory };
+                        const apiKey = ""; // Canvas will provide this at runtime
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            const text = result.candidates[0].content.parts[0].text;
+                            modalInfoContent.innerHTML = `<p>${text}</p>`;
+                        } else {
+                            modalInfoContent.innerHTML = `<p class="text-red-500">Failed to generate information. Please try again.</p>`;
+                            console.error("Gemini API response structure unexpected:", result);
+                        }
+                    } catch (error) {
+                        modalInfoContent.innerHTML = `<p class="text-red-500">An error occurred: ${error.message}. Please try again later.</p>`;
+                        console.error("Error calling Gemini API:", error);
+                    }
+                });
+            });
         });
-      });
-
-      // Close mobile menu on outside click
-      document.addEventListener('click', (e) => {
-        if (isMobile && navMenu.classList.contains('open') && !navMenu.contains(e.target) && !hamburger.contains(e.target)) {
-          toggleNavMenu();
-        }
-      });
-
-      // Teacher signature animations
-      if (hasGSAP) {
-        // Split text into spans for letter-by-letter animation
-        const text = teacherSignature.textContent;
-        teacherSignature.innerHTML = text.split('').map(char => `<span class="signature-letter">${char}</span>`).join('');
-        const letters = teacherSignature.querySelectorAll('.signature-letter');
-        
-        // Entrance animation
-        gsap.fromTo(letters, 
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.8, stagger: 0.05, ease: 'power2.out', delay: 0.5 }
-        );
-
-        // Continuous pulse animation
-        gsap.to(teacherSignature, {
-          scale: 1.02,
-          duration: 2,
-          repeat: -1,
-          yoyo: true,
-          ease: 'sine.inOut'
-        });
-
-        // Hover/tap animation
-        teacherSignature.addEventListener('mouseenter', () => {
-          gsap.to(teacherSignature, { scale: 1.05, rotate: 2, duration: 0.3, ease: 'power2.out' });
-        });
-        teacherSignature.addEventListener('mouseleave', () => {
-          gsap.to(teacherSignature, { scale: 1, rotate: 0, duration: 0.3, ease: 'power2.out' });
-        });
-        if (isMobile) {
-          teacherSignature.addEventListener('touchstart', () => {
-            gsap.to(teacherSignature, { scale: 1.05, rotate: 2, duration: 0.3, ease: 'power2.out' });
-          });
-          teacherSignature.addEventListener('touchend', () => {
-            gsap.to(teacherSignature, { scale: 1, rotate: 0, duration: 0.3, ease: 'power2.out' });
-          });
-        }
-      } else {
-        teacherSignature.style.opacity = '1';
-        teacherSignature.addEventListener('touchstart', () => {
-          teacherSignature.style.transform = 'scale(1.05) rotate(2deg)';
-        });
-        teacherSignature.addEventListener('touchend', () => {
-          teacherSignature.style.transform = 'scale(1) rotate(0deg)';
-        });
-      }
-
-      // Scroll-based animations (only if GSAP is available)
-      if (hasGSAP && !isMobile) {
-        gsap.fromTo('.hero-particle', { opacity: 0, scale: 0.8 }, {
-          opacity: 0.3,
-          scale: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'sine.inOut',
-          repeat: -1,
-          yoyo: true
-        });
-
-        gsap.utils.toArray('[data-animate]').forEach(el => {
-          gsap.fromTo(el, { opacity: 0, y: 20 }, {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: 'power2.out',
-            scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none reset' }
-          });
-        });
-      }
-
-      // Navbar scroll effect
-      window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
-      });
-
-      // Button hover/touch effects
-      document.querySelectorAll('.btn-primary, .whatsapp-btn').forEach(btn => {
-        btn.addEventListener('touchstart', () => {
-          if (hasGSAP) {
-            gsap.to(btn, { scale: 1.05, duration: 0.2, ease: 'power2.out' });
-          } else {
-            btn.style.transform = 'scale(1.05)';
-          }
-        });
-        btn.addEventListener('touchend', () => {
-          if (hasGSAP) {
-            gsap.to(btn, { scale: 1, duration: 0.2, ease: 'power2.out' });
-          } else {
-            btn.style.transform = 'scale(1)';
-          }
-        });
-      });
-    });
-  </script>
+    </script>
 </body>
 </html>
