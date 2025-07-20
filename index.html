@@ -218,6 +218,7 @@
         .generate-details-btn {
             touch-action: manipulation; /* Remove 300ms delay on tap */
             cursor: pointer; /* Ensure cursor is pointer */
+            -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
         }
     </style>
 </head>
@@ -231,7 +232,7 @@
                 Vidhalaya
             </a>
             <!-- Hamburger Button for Mobile -->
-            <button class="hamburger-button text-white text-2xl focus:outline-none" id="hamburger-menu">
+            <button class="hamburger-button text-white text-2xl focus:outline-none" id="hamburger-menu" aria-label="Toggle navigation menu">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="main-nav-links flex space-x-6" id="main-nav-links">
@@ -582,10 +583,14 @@
 
             function openModal() {
                 infoModal.classList.add('show');
+                // Prevent body scrolling when modal is open
+                document.body.style.overflow = 'hidden';
             }
 
             function closeModal() {
                 infoModal.classList.remove('show');
+                // Restore body scrolling when modal is closed
+                document.body.style.overflow = '';
                 // Clear content when closing
                 modalInfoTitle.textContent = '';
                 modalInfoContent.innerHTML = `
@@ -598,7 +603,7 @@
 
             closeInfoModalButton.addEventListener('click', closeModal);
             infoModal.addEventListener('click', (e) => {
-                if (e.target === infoModal) {
+                if (e.target === infoModal) { // Close only if clicking the overlay, not content
                     closeModal();
                 }
             });
@@ -609,6 +614,7 @@
                     const classLevel = button.dataset.class;
                     const infoType = button.dataset.type; // 'details' or 'career'
 
+                    console.log('Button clicked:', courseName, infoType); // Debugging log
                     openModal();
 
                     let prompt = "";
