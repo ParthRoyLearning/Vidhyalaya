@@ -38,74 +38,149 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
 
+    <!-- Critical CSS for initial render - Inlined to prevent render blocking -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa; /* Light background */
+            background-color: #f8f9fa;
             color: #333;
-            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+            scroll-behavior: smooth;
         }
         h1, h2, h3 {
-            font-family: 'Poppins', sans-serif; /* Apply Poppins to headings */
+            font-family: 'Poppins', sans-serif;
         }
         .star-rating .fas {
-            color: #ffc107; /* Gold color for stars */
+            color: #ffc107;
         }
         .star-rating .far {
-            color: #e4e5e9; /* Light grey for empty stars */
+            color: #e4e5e9;
         }
-
-        /* Custom Animations for Hero Section */
+        /* Hero Section Critical Styles */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(to right, #14b8a6, #2563eb); /* from-teal-500 to-blue-600 */
+            color: white;
+            padding-top: 5rem; /* py-20 */
+            padding-bottom: 5rem; /* py-20 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 75vh; /* min-h-screen-75 */
+            overflow: hidden;
+            border-bottom-left-radius: 0.5rem; /* rounded-b-lg */
+            border-bottom-right-radius: 0.5rem; /* rounded-b-lg */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+        }
+        .hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+        }
+        .hero-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 800; /* font-extrabold */
+            line-height: 1.25; /* leading-tight */
+            margin-bottom: 0.75rem; /* mb-3 */
+        }
+        .hero-subtitle {
+            font-size: 1.125rem; /* text-xl */
+            margin-bottom: 1.5rem; /* mb-6 */
+            opacity: 0.9;
+        }
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 0.75rem; /* space-y-3 */
+        }
+        .hero-button {
+            display: inline-block;
+            font-weight: 700; /* font-bold */
+            padding: 0.625rem 1.5rem; /* py-2.5 px-6 */
+            border-radius: 9999px; /* rounded-full */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+            transition: all 0.3s ease-in-out;
+            font-size: 0.875rem; /* text-sm */
+        }
+        .hero-button:hover {
+            transform: scale(1.05);
+        }
+        .hero-button-yellow {
+            background-color: #facc15; /* bg-yellow-400 */
+            color: #1f2937; /* text-gray-900 */
+        }
+        .hero-button-green {
+            background-color: #22c55e; /* bg-green-500 */
+            color: white;
+        }
+        /* Animations for Hero Section */
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
+        .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; animation-delay: 0.3s; }
+        .hero-button-animation { animation-delay: 0.6s; }
+        .hero-button-animation-2 { animation-delay: 0.9s; }
+
+        /* Responsive adjustments for Hero Section */
+        @media (min-width: 640px) { /* sm */
+            .hero-section {
+                padding-top: 8rem; /* sm:py-20 */
+                padding-bottom: 8rem; /* sm:py-20 */
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .hero-content {
+                padding-left: 1.5rem; /* sm:px-6 */
+                padding-right: 1.5rem; /* sm:px-6 */
+            }
+            .hero-title {
+                font-size: 2.5rem; /* sm:text-4xl */
+                margin-bottom: 1rem; /* sm:mb-4 */
+            }
+            .hero-subtitle {
+                font-size: 1.125rem; /* sm:text-lg */
+                margin-bottom: 2rem; /* sm:mb-8 */
+            }
+            .hero-buttons {
+                flex-direction: row; /* sm:flex-row */
+                margin-top: 0; /* sm:space-y-0 */
+                margin-left: 1rem; /* sm:space-x-4 */
+            }
+            .hero-button {
+                padding: 0.75rem 2rem; /* sm:py-3 sm:px-8 */
+                font-size: 1rem; /* sm:text-base */
+            }
+        }
+        @media (min-width: 768px) { /* md */
+            .hero-section {
+                padding-top: 8rem; /* md:py-32 */
+                padding-bottom: 8rem; /* md:py-32 */
+            }
+            .hero-title {
+                font-size: 3.75rem; /* md:text-6xl */
+            }
+            .hero-subtitle {
+                font-size: 1.5rem; /* md:text-2xl */
             }
         }
 
-        .animate-fade-in-down {
-            animation: fadeInDown 1s ease-out forwards;
-        }
-
-        .animate-fade-in-up {
-            animation: fadeInUp 1s ease-out forwards;
-            animation-delay: 0.3s; /* Delay for the paragraph after the heading */
-        }
-        .hero-button-animation {
-            animation-delay: 0.6s; /* Delay for the first button */
-        }
-        .hero-button-animation-2 {
-            animation-delay: 0.9s; /* Delay for the second button */
-        }
-
-        /* Scroll Reveal Animations */
+        /* Other common styles for performance */
         .scroll-fade-in {
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
         .scroll-fade-in.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
-
-        /* Back to Top Button */
         #back-to-top {
             position: fixed;
             bottom: 2rem;
@@ -113,9 +188,9 @@
             background-color: #4CAF50;
             color: white;
             padding: 1rem;
-            border-radius: 9999px; /* Fully rounded */
+            border-radius: 9999px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: none; /* Hidden by default */
+            display: none;
             cursor: pointer;
             transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
             z-index: 1000;
@@ -124,8 +199,6 @@
             background-color: #45a049;
             transform: scale(1.1);
         }
-
-        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -176,8 +249,6 @@
         .modal-close-button:hover {
             color: #333;
         }
-
-        /* New: Background animation for a section */
         @keyframes pulseBackground {
             0% { background-color: #e0f2f7; }
             50% { background-color: #d1e7ed; }
@@ -210,19 +281,19 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative bg-gradient-to-r from-teal-500 to-blue-600 text-white py-16 sm:py-20 md:py-32 flex items-center justify-center min-h-screen-75 overflow-hidden rounded-b-lg shadow-xl">
-        <div class="container mx-auto text-center relative z-10 px-4 sm:px-6">
-            <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold leading-tight mb-3 sm:mb-4 animate-fade-in-down">
+    <section id="home" class="hero-section">
+        <div class="container mx-auto hero-content">
+            <h1 class="hero-title animate-fade-in-down">
                 Partha Roy, Lead Educator
             </h1>
-            <p class="text-base sm:text-lg md:text-2xl mb-6 sm:mb-8 opacity-90 animate-fade-in-up">
+            <p class="hero-subtitle animate-fade-in-up">
                 Guiding the next generation of commerce leaders.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-3 sm:space-y-0 sm:space-x-4">
-                <a href="#courses" class="inline-block bg-yellow-400 text-gray-900 font-bold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full shadow-lg hover:bg-yellow-300 transform hover:scale-105 transition duration-300 ease-in-out hero-button-animation text-sm sm:text-base">
+            <div class="hero-buttons">
+                <a href="#courses" class="hero-button hero-button-yellow animate-fade-in-down hero-button-animation">
                     Explore Our Courses
                 </a>
-                <a href="https://forms.gle/6xPsi2KLkhs2DVdTA" target="_blank" class="inline-block bg-green-500 text-white font-bold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full shadow-lg hover:bg-green-400 transform hover:scale-105 transition duration-300 ease-in-out hero-button-animation-2 text-sm sm:text-base">
+                <a href="https://forms.gle/6xPsi2KLkhs2DVdTA" target="_blank" class="hero-button hero-button-green animate-fade-in-down hero-button-animation-2">
                     Apply for Admission
                 </a>
             </div>
